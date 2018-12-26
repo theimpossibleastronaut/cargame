@@ -55,6 +55,9 @@ class World {
 		let dir = new THREE.DirectionalLight( 0xffffff, 0.5 );
 
 		dir.position.set( 35, 35, 50 );
+		dir.castShadow = true;
+		dir.shadow.camera.near = 0.1;
+		dir.shadow.camera.far = 25;
 
 		this.scene.add( ambient );
 		this.scene.add( dir );
