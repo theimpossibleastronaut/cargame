@@ -2,6 +2,8 @@ class LocalPlayer extends Player {
 	constructor( x, y ) {
 		super( x, y );
 
+		this.positionCallback = null;
+
 		this.moveUp = false;
 		this.moveDown = false;
 		this.moveLeft = false;
@@ -74,6 +76,10 @@ class LocalPlayer extends Player {
 
 		if ( dirty ) {
 			this.updatePosition();
+
+			if ( typeof this.positionCallback == "function" ) {
+				this.positionCallback.call();
+			}
 		}
 
 	}

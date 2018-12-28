@@ -25,7 +25,7 @@ class Player extends GameObject {
 	updatePosition() {
 		this.mesh.position.x = this.x * this.geomSize;
 		this.mesh.position.y = this.y * this.geomSize;
-		this.mesh.position.z = this.z * this.geomSize;
+		//this.mesh.position.z = this.z * this.geomSize;
 		this.mesh.rotation.z = THREE.Math.degToRad( this.rotation );
 	}
 
