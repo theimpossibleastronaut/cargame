@@ -35,6 +35,8 @@ class Game {
 				let obj = this.remotePlayers[ message.client ];
 				this.world.scene.remove( obj.mesh );
 
+				obj.destroy();
+
 				delete this.remotePlayers[ message.client ];
 			}
 		} else if ( message.type == "data" ) {
@@ -48,10 +50,7 @@ class Game {
 				this.world.scene.add( obj.mesh );
 			}
 
-			obj.x = message.x;
-			obj.y = message.y;
-			obj.rotation = message.rotation;
-			obj.updatePosition();
+			obj.updateFromMessage( message );
 		}
 	}
 }

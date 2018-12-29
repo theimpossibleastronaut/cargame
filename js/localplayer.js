@@ -4,12 +4,7 @@ class LocalPlayer extends Player {
 
 		this.positionCallback = null;
 
-		this.moveUp = false;
-		this.moveDown = false;
-		this.moveLeft = false;
-		this.moveRight = false;
-
-		setInterval( this.updateControls.bind(this), 1000 / 60 );
+		setInterval( this.updateControls.bind(this), this.moveInterval );
 		window.addEventListener( 'keydown', this.keydown.bind(this), false );
 		window.addEventListener( 'keyup', this.keyup.bind(this), false );
 	}
@@ -41,11 +36,15 @@ class LocalPlayer extends Player {
 	updateControls() {
 
 		let dirty = false;
-		let moveSpeed = 0.5;
-		let rotationSpeed = 4;
+
+		if ( this.moveRight || this.moveLeft ) {
+			this.rotationSpeed = this.ROTATION_SPEED;
+		} else {
+			this.rotationSpeed = 0;
+		}
 
 		if ( this.moveRight ) {
-			this.rotation -= rotationSpeed;
+			this.rotation -= this.rotationSpeed;
 			if ( this.rotation < 0 ) {
 				this.rotation = 360 - this.rotation;
 			}
@@ -54,7 +53,7 @@ class LocalPlayer extends Player {
 		}
 
 		if ( this.moveLeft ) {
-			this.rotation += rotationSpeed;
+			this.rotation += this.rotationSpeed;
 			if ( this.rotation >= 360 ) {
 				this.rotation = this.rotation % 360;
 			}
@@ -62,15 +61,21 @@ class LocalPlayer extends Player {
 			dirty = true;
 		}
 
+		if ( this.moveUp || this.moveDown ) {
+			this.moveSpeed = this.MOVE_SPEED;
+		} else {
+			this.moveSpeed = 0;
+		}
+
 		if ( this.moveUp ) {
-			this.x += ( Math.cos( THREE.Math.degToRad( this.rotation ) ) * moveSpeed );
-			this.y += ( Math.sin( THREE.Math.degToRad( this.rotation ) ) * moveSpeed );
+			this.x += ( Math.cos( THREE.Math.degToRad( this.rotation ) ) * this.moveSpeed );
+			this.y += ( Math.sin( THREE.Math.degToRad( this.rotation ) ) * this.moveSpeed );
 			dirty = true;
 		}
 
 		if ( this.moveDown ) {
-			this.x -= ( Math.cos( THREE.Math.degToRad( this.rotation ) ) * moveSpeed );
-			this.y -= ( Math.sin( THREE.Math.degToRad( this.rotation ) ) * moveSpeed );
+			this.x -= ( Math.cos( THREE.Math.degToRad( this.rotation ) ) * this.moveSpeed );
+			this.y -= ( Math.sin( THREE.Math.degToRad( this.rotation ) ) * this.moveSpeed );
 			dirty = true;
 		}
 

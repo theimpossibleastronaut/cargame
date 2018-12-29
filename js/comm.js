@@ -55,13 +55,20 @@ class Comm {
 	}
 
 	sendPlayerUpdate( player ) {
-		if ( this.connected && ((new Date()) - this.lastLocalMessage > 100) ) {
+		if ( this.connected && ((new Date()) - this.lastLocalMessage > 200) ) {
 			let obj = {
 				client: this.clientId,
 				type: "data",
 				x: player.x,
 				y: player.y,
-				rotation: player.rotation
+				rotation: player.rotation,
+				moveSpeed: player.moveSpeed,
+				rotationSpeed: player.rotationSpeed,
+				moveInterval: player.moveInterval,
+				moveUp: player.moveUp,
+				moveDown: player.moveDown,
+				moveLeft: player.moveLeft,
+				moveRight: player.moveRight
 			}
 
 			let message = new Paho.MQTT.Message(JSON.stringify(obj));
