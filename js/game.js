@@ -1,6 +1,10 @@
 class Game {
 	constructor() {
 		this.world = new World();
+
+		this.stats = new Stats();
+		document.getElementById( "container" ).appendChild( this.stats.dom );
+
 		this.localPlayer = new LocalPlayer( 35, 35 );
 		this.localPlayer.positionCallback = this.localPlayerIsDirty.bind( this );
 
@@ -18,7 +22,11 @@ class Game {
 	animationUpdate() {
 		requestAnimationFrame( this.animationUpdate.bind(this) );
 
+		this.stats.begin();
+
 		this.world.animationUpdate();
+
+		this.stats.end();
 	}
 
 	localPlayerIsDirty( ) {
