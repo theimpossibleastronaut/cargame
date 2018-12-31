@@ -8,7 +8,7 @@ class RemotePlayer extends Player {
 		this.lastMessage = null;
 		this.extrapolateIteration = 0;
 
-		this.moveInterval = 1000 / 20;
+		this.moveInterval = 1000 / 25;
 	}
 
 	destroy() {

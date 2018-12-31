@@ -18,7 +18,7 @@ class Player extends GameObject {
 
 		this.moveSpeed = 0;
 		this.rotationSpeed = 0;
-		this.moveInterval = 1000 / 60;
+		this.moveInterval = 1000 / 25;
 
 		this.createMesh();
 

@@ -1,4 +1,18 @@
 class Game {
+	static texLoader = new THREE.TextureLoader();
+	static texFacade = Game.texLoader.load( './images/generic_facade.png' );
+	static texFacadeDoor = Game.texLoader.load( './images/generic_facade_door.png' );
+	static texRooftop = Game.texLoader.load( './images/generic_rooftop.png' );
+	static mat = [
+			new THREE.MeshBasicMaterial( { map: Game.texFacade } ),
+			new THREE.MeshBasicMaterial( { map: Game.texFacade } ),
+			new THREE.MeshBasicMaterial( { map: Game.texRooftop } ),
+			new THREE.MeshBasicMaterial( { map: Game.texRooftop } ),
+			new THREE.MeshBasicMaterial( { map: Game.texFacadeDoor } ),
+			new THREE.MeshBasicMaterial( { map: Game.texFacade } )
+		];
+	static geom = new THREE.BoxBufferGeometry( 10, 5, 10 )
+
 	constructor() {
 		this.world = new World();
 
