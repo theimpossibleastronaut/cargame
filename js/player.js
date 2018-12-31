@@ -26,10 +26,8 @@ class Player extends GameObject {
 	}
 
 	createMesh() {
-		let texLoader = new THREE.TextureLoader();
-
 		this.geom = new THREE.PlaneGeometry( this.geomSize, this.geomSize, this.geomSize, this.geomSize );
-		this.tex = texLoader.load( './images/player.png' );
+		this.tex = Game.texLoader.load( './images/player.png' );
 		this.mat = new THREE.MeshLambertMaterial( {map: this.tex, transparent: true} );
 		this.mesh = new THREE.Mesh( this.geom, this.mat );
 	}

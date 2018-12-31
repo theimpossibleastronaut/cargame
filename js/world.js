@@ -56,13 +56,10 @@ class World {
 
 		dir.position.set( 35, 35, 50 );
 		dir.castShadow = true;
-		dir.shadow.camera.near = 0.1;
-		dir.shadow.camera.far = 25;
+		dir.shadow.camera.near = 1;
+		dir.shadow.camera.far = 20;
 
 		this.scene.add( ambient );
 		this.scene.add( dir );
-
-		let fog = new THREE.FogExp2( 0xffffff, 0.0015 );
-		this.scene.fog = fog;
 	}
 }
